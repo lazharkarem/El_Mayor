@@ -3,25 +3,65 @@
 /* ══════════════════════════════════════════════════════════════
    VARIABLES
 ══════════════════════════════════════════════════════════════ */
-:root {
-    --bg-dark:    #3e2723; /* Dark Brown background */
-    --bg-red:     #e0e0e0; /* Light Grey accents */
-    --text-white: #ffffff; /* White text */
-    --text-muted: #bcaaa4; /* Muted text */
-    --brand:      'Alfa Slab One', cursive;
-    --head:       'Oswald', sans-serif;
-    --body:       'Roboto', sans-serif;
+:root,
+[data-theme="dark"] {
+    /* ── Dark Theme (default) ─────────────────────────────── */
+    --bg-page:        #0a0c0e;       /* body background */
+    --bg-dark:        #14171a;       /* page card background */
+    --bg-col:         transparent;   /* column background */
+    --bg-red:         #a1887f;       /* brown accent */
+    --text-white:     #ffffff;       /* primary text */
+    --text-muted:     #bcaaa4;       /* secondary text */
+    --section-title:  var(--bg-red); /* section header color */
+    --item-dot-color: rgba(255,255,255,0.2);
+    --col-red-top-bg: url('https://www.transparenttextures.com/patterns/black-paper.png'), var(--bg-red);
+    --brand:          'Alfa Slab One', cursive;
+    --head:           'Oswald', sans-serif;
+    --body:           'Roboto', sans-serif;
+}
+
+[data-theme="light"] {
+    /* ── Light Theme ──────────────────────────────────────── */
+    --bg-page:        #f5f0eb;
+    --bg-dark:        #ffffff;
+    --bg-col:         transparent;
+    --bg-red:         #6d4c41;       /* deeper brown for contrast on white */
+    --text-white:     #2c1a0e;       /* dark brown text */
+    --text-muted:     #795548;
+    --section-title:  var(--bg-red);
+    --item-dot-color: rgba(0,0,0,0.18);
+    --col-red-top-bg: url('https://www.transparenttextures.com/patterns/white-wall.png'), var(--bg-red);
+    --brand:          'Alfa Slab One', cursive;
+    --head:           'Oswald', sans-serif;
+    --body:           'Roboto', sans-serif;
+}
+
+[data-theme="earthy"] {
+    /* ── Earthy Theme ─────────────────────────────────────── */
+    --bg-page:        #4e342e;
+    --bg-dark:        #3e2723;
+    --bg-col:         transparent;
+    --bg-red:         #bcaaa4;       /* light grey/cream accent */
+    --text-white:     #efebe9;       /* off-white text */
+    --text-muted:     #d7ccc8;
+    --section-title:  #efebe9;
+    --item-dot-color: rgba(255,255,255,0.15);
+    --col-red-top-bg: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), #5d4037;
+    --brand:          'Alfa Slab One', cursive;
+    --head:           'Oswald', sans-serif;
+    --body:           'Roboto', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: var(--body);
-    background: #2a1b14;
+    background: var(--bg-page);
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    transition: background 0.35s ease;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -60,6 +100,7 @@ body {
 #menu-page-1,
 #menu-page-2 {
     background-color: var(--bg-dark);
+    transition: background-color 0.35s ease;
 }
 
 .wood-bg-overlay {
@@ -159,7 +200,7 @@ body {
     align-items: center;
 }
 .col-red-top {
-    background: url('https://www.transparenttextures.com/patterns/black-paper.png'), var(--bg-red);
+    background: var(--col-red-top-bg);
     width: 100%;
     padding: 3rem 1.8rem 0;
     display: flex;
@@ -191,6 +232,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    transition: background 0.35s ease;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -213,7 +255,7 @@ body {
 .section-title {
     font-family: var(--brand);
     font-size: 1.6rem;
-    color: var(--bg-red); /* Brown */
+    color: var(--section-title);
     letter-spacing: 1px;
     margin-bottom: 1rem;
     display: block;
@@ -242,7 +284,7 @@ body {
 }
 .item-dots {
     flex: 1;
-    border-bottom: 2px dotted rgba(255,255,255,0.2);
+    border-bottom: 2px dotted var(--item-dot-color);
     position: relative;
     top: -3px;
     min-width: 15px; /* ensure dots don't vanish */
@@ -338,8 +380,8 @@ body {
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
 }
 
-.resto-name { color: #3e2723; font-family: var(--head); letter-spacing: 2px; }
-.resto-name p { font-size: 0.85rem; opacity: 0.8; }
+.resto-name { color: var(--text-white); font-family: var(--head); letter-spacing: 2px; }
+.resto-name p { font-size: 0.85rem; opacity: 0.85; }
 .resto-name span {
     display: block;
     font-family: var(--brand);
@@ -413,9 +455,10 @@ body {
 .wall-theme {
     width: 100%;
     overflow-x: auto;
-    background: var(--bg-dark);
+    background: var(--bg-page);
     padding: 0;
     font-family: var(--body);
+    transition: background 0.35s ease;
 }
 
 /* Ultra-wide horizontal banner: 280:45 ratio */
@@ -427,6 +470,7 @@ body {
     background: var(--bg-dark);
     border-top: 5px solid var(--bg-red);
     border-bottom: 5px solid var(--bg-red);
+    transition: background 0.35s ease, border-color 0.35s ease;
 }
 
 /* Single full-height column */
@@ -483,7 +527,7 @@ body {
 .wall-title {
     font-family: var(--brand);
     font-size: 1.5rem;
-    color: #3e2723;
+    color: var(--text-white);
     background: var(--bg-red);
     text-align: center;
     padding: 10px;
@@ -573,7 +617,7 @@ body {
     text-align: center;
     border-right: 2px solid rgba(0,0,0,0.2);
     border-left: 2px solid rgba(0,0,0,0.2);
-    color: #3e2723; /* Override text color for light grey bg */
+    color: var(--text-white);
 }
 .wall-brand-col::before {
     content: '';
@@ -590,7 +634,7 @@ body {
     height: 110px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--bg-red);
+    border: 4px solid rgba(255,255,255,0.4);
     box-shadow: 0 0 30px rgba(0,0,0,0.8);
     position: relative;
     z-index: 1;
@@ -598,7 +642,7 @@ body {
 .wall-brand-name {
     font-family: var(--brand);
     font-size: 1.6rem;
-    color: #3e2723;
+    color: var(--text-white);
     text-align: center;
     letter-spacing: 4px;
     position: relative;
@@ -607,8 +651,8 @@ body {
 .wall-brand-sub {
     font-family: var(--head);
     font-size: 0.62rem;
-    color: #3e2723;
-    opacity: 0.75;
+    color: var(--text-white);
+    opacity: 0.8;
     letter-spacing: 4px;
     text-transform: uppercase;
     position: relative;
@@ -734,14 +778,14 @@ body {
     font-size: 0.78rem;
     font-family: var(--body);
     font-weight: 500;
-    color: #3e2723;
-    opacity: 0.9;
+    color: var(--text-white);
+    opacity: 0.95;
 }
 .w-detail-phone {
     font-size: 0.85rem;
     font-family: var(--head);
     font-weight: bold;
-    color: #3e2723;
+    color: var(--text-white);
     letter-spacing: 0.5px;
 }
 .w-social-badges {
@@ -750,13 +794,13 @@ body {
     margin-top: 4px;
 }
 .w-badge {
-    background: rgba(62, 39, 35, 0.08);
-    border: 1px solid rgba(62, 39, 35, 0.12);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 3px 8px;
     border-radius: 12px;
     font-size: 0.65rem;
     font-family: var(--body);
-    color: #3e2723;
+    color: var(--text-white);
 }
 .w-delivery-box {
     margin-top: 6px;
@@ -769,6 +813,134 @@ body {
     padding: 3px 10px;
     border-radius: 4px;
     text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT THEME OVERRIDES
+══════════════════════════════════════════════════════════════ */
+[data-theme="light"] .page-wrapper {
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+}
+[data-theme="light"] .boxed-item {
+    background: rgba(0,0,0,0.04);
+    border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .image-list-item {
+    background: rgba(0,0,0,0.04);
+    border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .wall-item {
+    border-bottom-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .wall-col,
+[data-theme="light"] .wall-col-double {
+    border-right-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .wall-panel {
+    border-bottom-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .wall-img-panel {
+    background-color: #d7ccc8;
+}
+[data-theme="light"] .w-salsa {
+    background: rgba(0,0,0,0.06);
+    border-color: rgba(0,0,0,0.15);
+    color: var(--bg-red);
+}
+[data-theme="light"] .w-badge {
+    background: rgba(0,0,0,0.06);
+    border-color: rgba(0,0,0,0.15);
+}
+[data-theme="light"] .w-delivery-box {
+    background: var(--bg-red);
+    color: #fff;
+}
+[data-theme="light"] .wall-brand-hours {
+    background: #f5f0eb;
+    color: #2c1a0e;
+}
+[data-theme="light"] .wall-brand-hours span {
+    color: var(--bg-red);
+}
+[data-theme="light"] .badge {
+    background: rgba(0,0,0,0.06);
+    border-color: rgba(0,0,0,0.15);
+    color: var(--text-white);
+}
+[data-theme="light"] .partner-badge {
+    background: rgba(0,0,0,0.06);
+    border-color: rgba(0,0,0,0.15);
+    color: var(--text-white);
+}
+[data-theme="light"] .allergy-disclaimer {
+    border-top-color: rgba(0,0,0,0.1);
+    color: var(--text-muted);
+}
+[data-theme="light"] .toolbar {
+    background: #fff;
+    border-bottom-color: var(--bg-red);
+}
+[data-theme="light"] .toolbar-controls select,
+[data-theme="light"] .toolbar-controls button {
+    background: #f5f0eb;
+    color: #2c1a0e;
+    border-color: var(--bg-red);
+}
+[data-theme="light"] .toolbar-controls button:hover {
+    background: var(--bg-red);
+    color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   EARTHY THEME OVERRIDES
+══════════════════════════════════════════════════════════════ */
+[data-theme="earthy"] .page-wrapper {
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+[data-theme="earthy"] .boxed-item {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.1);
+}
+[data-theme="earthy"] .image-list-item {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.1);
+}
+[data-theme="earthy"] .wall-img-panel {
+    background-color: #5d4037;
+}
+[data-theme="earthy"] .w-delivery-box {
+    background: #6d4c41;
+    color: #efebe9;
+}
+[data-theme="earthy"] .wall-brand-hours {
+    background: #5d4037;
+    color: #efebe9;
+}
+[data-theme="earthy"] .wall-brand-logo {
+    border-color: #bcaaa4;
+}
+[data-theme="earthy"] .toolbar {
+    background: #2c1a0e;
+    border-bottom-color: #bcaaa4;
+}
+[data-theme="earthy"] .toolbar-controls select,
+[data-theme="earthy"] .toolbar-controls button {
+    background: #3e2723;
+    color: #efebe9;
+    border-color: #bcaaa4;
+}
+[data-theme="earthy"] .toolbar-controls button:hover {
+    background: #bcaaa4;
+    color: #2c1a0e;
+}
+[data-theme="earthy"] .badge {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+}
+[data-theme="earthy"] .partner-badge {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+    color: var(--text-white);
 }
 
 /* ══════════════════════════════════════════════════════════════

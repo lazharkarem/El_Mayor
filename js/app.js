@@ -1,7 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const themeSelect = document.getElementById('theme-select');
     const formatSelect = document.getElementById('format-select');
     const wrappers = document.querySelectorAll('.menu-wrapper');
     const wallWrapper = document.getElementById('wall-menu-wrapper');
+
+    // Apply default theme on load
+    document.body.setAttribute('data-theme', themeSelect.value);
+
+    themeSelect.addEventListener('change', (e) => {
+        document.body.setAttribute('data-theme', e.target.value);
+        // Force wall menu to re-render with new theme colors
+        if (wallWrapper.style.display !== 'none') {
+            document.getElementById('wall-grid-container').innerHTML = '';
+            renderWallMenu();
+        }
+    });
 
     formatSelect.addEventListener('change', (e) => {
         const fmt = e.target.value;
