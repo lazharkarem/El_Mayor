@@ -4,10 +4,10 @@
    VARIABLES
 ══════════════════════════════════════════════════════════════ */
 :root {
-    --bg-dark:    #111418;
-    --bg-red:     #c81a20;
-    --text-white: #ffffff;
-    --text-muted: #999999;
+    --bg-dark:    #3e2723; /* Dark Brown background */
+    --bg-red:     #e0e0e0; /* Light Grey accents */
+    --text-white: #ffffff; /* White text */
+    --text-muted: #bcaaa4; /* Muted text */
     --brand:      'Alfa Slab One', cursive;
     --head:       'Oswald', sans-serif;
     --body:       'Roboto', sans-serif;
@@ -16,7 +16,7 @@
 
 body {
     font-family: var(--body);
-    background: #0e0e0e;
+    background: #2a1b14;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,16 +50,16 @@ body {
 
 .page-wrapper {
     margin: 36px auto;
-    background: #0e1114;
-    box-shadow: 0 28px 70px rgba(0,0,0,0.95);
+    background: var(--bg-dark);
+    box-shadow: 0 28px 70px rgba(0,0,0,0.5);
     position: relative;
     overflow: hidden;
 }
 
-/* Page 1 and Page 2: Same dark chalkboard/paper texture */
+/* Page 1 and Page 2: Same texture */
 #menu-page-1,
 #menu-page-2 {
-    background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
+    background-color: var(--bg-dark);
 }
 
 .wood-bg-overlay {
@@ -213,8 +213,7 @@ body {
 .section-title {
     font-family: var(--brand);
     font-size: 1.6rem;
-    color: var(--text-white);
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+    color: var(--bg-red); /* Brown */
     letter-spacing: 1px;
     margin-bottom: 1rem;
     display: block;
@@ -270,10 +269,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    border: 1px solid rgba(255,255,255,0.5);
-    padding: 10px 14px;
-    margin-bottom: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 12px;
 }
 .boxed-item .item-price {
     font-size: 1.15rem;
@@ -338,13 +338,12 @@ body {
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
 }
 
-.resto-name { color: var(--text-white); font-family: var(--head); letter-spacing: 2px; }
+.resto-name { color: #3e2723; font-family: var(--head); letter-spacing: 2px; }
 .resto-name p { font-size: 0.85rem; opacity: 0.8; }
 .resto-name span {
     display: block;
     font-family: var(--brand);
     font-size: 1.6rem;
-    text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
     line-height: 1.1;
     margin: 5px 0;
 }
@@ -356,8 +355,8 @@ body {
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    border: 8px solid rgba(0,0,0,0.4);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 0 0 4px rgba(255,255,255,0.08);
+    border: 8px solid rgba(255,255,255,0.4);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2), inset 0 0 0 4px rgba(255,255,255,0.08);
     margin-top: -30px;
     margin-bottom: -30px;
     position: relative;
@@ -371,7 +370,6 @@ body {
     font-size: 2.1rem;
     line-height: 1.1;
     text-transform: uppercase;
-    text-shadow: 3px 3px 0 rgba(0,0,0,0.4);
     border: 3px solid var(--text-white);
     padding: 10px 14px;
     margin-top: 6px;
@@ -393,7 +391,7 @@ body {
 
 .hours-container { color: var(--text-white); font-family: var(--head); }
 .hours-container p { font-size: 0.85rem; letter-spacing: 3px; opacity: 0.8; }
-.hours-container h3 { font-family: var(--brand); font-size: 1.8rem; text-shadow: 2px 2px 0 rgba(0,0,0,0.4); }
+.hours-container h3 { font-family: var(--brand); font-size: 1.8rem; }
 
 /* ══════════════════════════════════════════════════════════════
    WALL / KAPPA SCALING
@@ -436,7 +434,7 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    border-right: 2px solid rgba(200, 26, 32, 0.3);
+    border-right: 2px solid rgba(224, 224, 224, 0.15);
     overflow: hidden;
     height: 100%;
 }
@@ -447,7 +445,7 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    border-right: 2px solid rgba(200, 26, 32, 0.3);
+    border-right: 2px solid rgba(224, 224, 224, 0.15);
     overflow: hidden;
     height: 100%;
 }
@@ -459,18 +457,18 @@ body {
     flex-direction: column;
     flex: 1;
     overflow: hidden;
-    border-bottom: 2px solid rgba(200,26,32,0.3);
+    border-bottom: 2px solid rgba(224, 224, 224, 0.15);
 }
 .wall-panel:last-child { border-bottom: none; }
 
 /* Image panel inside a column */
 .wall-img-panel {
     flex: 0 0 140px;
-    border-bottom: 2px solid rgba(200,26,32,0.3);
+    border-bottom: 2px solid rgba(224, 224, 224, 0.15);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background-color: #2a1b14;
 }
 .wall-img-panel:last-child { border-bottom: none; }
 .wall-img {
@@ -484,11 +482,11 @@ body {
 /* Section title bar */
 .wall-title {
     font-family: var(--brand);
-    font-size: 0.9rem;
-    color: var(--text-white);
+    font-size: 1.5rem;
+    color: #3e2723;
     background: var(--bg-red);
     text-align: center;
-    padding: 6px 4px;
+    padding: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
     flex-shrink: 0;
@@ -556,35 +554,33 @@ body {
     font-size: 0.6rem;
     font-weight: 700;
     font-family: var(--body);
-    color: var(--text-white);
+    color: var(--bg-red);
     padding: 2px 3px;
-    background: rgba(200,26,32,0.18);
-    border: 1px solid rgba(200,26,32,0.3);
+    background: rgba(224, 224, 224, 0.08);
+    border: 1px solid rgba(224, 224, 224, 0.2);
     border-radius: 3px;
     text-align: center;
 }
 
 /* Center brand column */
 .wall-brand-col {
-    flex: 1.4;
+    background: var(--bg-red);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(160deg, #200000 0%, #111418 50%, #200000 100%);
-    border-right: 3px solid var(--bg-red);
-    border-left: 3px solid var(--bg-red);
-    padding: 12px;
-    gap: 5px;
-    position: relative;
-    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+    border-right: 2px solid rgba(0,0,0,0.2);
+    border-left: 2px solid rgba(0,0,0,0.2);
+    color: #3e2723; /* Override text color for light grey bg */
 }
 .wall-brand-col::before {
     content: '';
     position: absolute;
     width: 300px; height: 300px;
     border-radius: 50%;
-    border: 2px solid rgba(200,26,32,0.15);
+    border: 2px solid rgba(62, 39, 35, 0.15);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -595,14 +591,14 @@ body {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--bg-red);
-    box-shadow: 0 0 30px rgba(200,26,32,0.6);
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
     position: relative;
     z-index: 1;
 }
 .wall-brand-name {
     font-family: var(--brand);
     font-size: 1.6rem;
-    color: var(--text-white);
+    color: #3e2723;
     text-align: center;
     letter-spacing: 4px;
     position: relative;
@@ -611,21 +607,169 @@ body {
 .wall-brand-sub {
     font-family: var(--head);
     font-size: 0.62rem;
-    color: var(--bg-red);
+    color: #3e2723;
+    opacity: 0.75;
     letter-spacing: 4px;
     text-transform: uppercase;
     position: relative;
     z-index: 1;
 }
 .wall-brand-hours {
-    font-family: var(--brand);
-    font-size: 0.9rem;
-    color: var(--text-white);
-    margin-top: 4px;
-    position: relative;
-    z-index: 1;
+    font-family: var(--body);
+    font-size: 1.1rem;
+    color: #ffffff;
+    background: var(--bg-dark);
+    padding: 3px 12px;
+    border-radius: 20px;
 }
 .wall-brand-hours span { color: var(--bg-red); }
+
+/* Premium Social and Contact Badges */
+.social-badges {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-family: var(--body);
+    font-weight: 500;
+    color: var(--text-white);
+    transition: background 0.2s, transform 0.2s;
+}
+.badge:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+.badge-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* Delivery Partners Section */
+.delivery-section {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
+}
+.delivery-title {
+    display: block;
+    font-family: var(--head);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+.delivery-partners {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+.partner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-family: var(--body);
+    font-weight: bold;
+    color: var(--text-white);
+}
+.partner-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.partner-dot-glovo {
+    background: #ffc244; /* Glovo Yellow */
+    box-shadow: 0 0 6px #ffc244;
+}
+.partner-dot-deliveroo {
+    background: #00cdbc; /* Deliveroo Teal */
+    box-shadow: 0 0 6px #00cdbc;
+}
+
+/* Allergy and Food Disclaimer */
+.allergy-disclaimer {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+    font-size: 0.68rem;
+    font-family: var(--body);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 280px;
+}
+
+/* Wall Brand Details (Kappa horizontal) */
+.wall-brand-details {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 1;
+    position: relative;
+    width: 100%;
+}
+.w-detail-address {
+    font-size: 0.78rem;
+    font-family: var(--body);
+    font-weight: 500;
+    color: #3e2723;
+    opacity: 0.9;
+}
+.w-detail-phone {
+    font-size: 0.85rem;
+    font-family: var(--head);
+    font-weight: bold;
+    color: #3e2723;
+    letter-spacing: 0.5px;
+}
+.w-social-badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+.w-badge {
+    background: rgba(62, 39, 35, 0.08);
+    border: 1px solid rgba(62, 39, 35, 0.12);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-family: var(--body);
+    color: #3e2723;
+}
+.w-delivery-box {
+    margin-top: 6px;
+    font-family: var(--head);
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #3e2723;
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
 
 /* ══════════════════════════════════════════════════════════════
    PRINT

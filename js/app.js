@@ -154,6 +154,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="wall-brand-name">EL MAYOR</div>
                 <div class="wall-brand-sub">KEBAB &amp; RISTORANTE</div>
                 <div class="wall-brand-hours">11:00 – <span>24:00</span></div>
+                
+                <div class="wall-brand-details">
+                    <p class="w-detail-address">📍 Via Rosa, 4 - Ragusa</p>
+                    <p class="w-detail-phone">📞 0932 518480</p>
+                    
+                    <div class="w-social-badges">
+                        <span class="w-badge">📸 @elmayorkebab</span>
+                        <span class="w-badge">👥 El Mayor Kebab</span>
+                    </div>
+                    
+                    <div class="w-delivery-box">
+                        <span>CONSEGNE Glovo &amp; Deliveroo</span>
+                    </div>
+                </div>
             </div>`;
 
         /* Col 5 — PIATTI + FRITTURA */
