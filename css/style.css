@@ -967,9 +967,33 @@ body {
    PRINT
 ══════════════════════════════════════════════════════════════ */
 @media print {
-    @page { size: auto; margin: 0; }
-    body { background: none; align-items: flex-start; padding: 0; margin: 0;
-           -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    /* Force exact colours — needed for background images/colours in PDF */
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    body { background: none !important; align-items: flex-start; padding: 0; margin: 0; }
+
+    /* Hide toolbar and any hidden wrappers */
     .no-print { display: none !important; }
-    .page-wrapper { margin: 0; box-shadow: none; width: 100% !important; page-break-after: always; }
+
+    /* Each visible page wrapper becomes one PDF page */
+    .page-wrapper {
+        margin: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        page-break-before: always;
+        break-before: page;
+    }
+
+    /* First page: no leading page-break */
+    .page-wrapper:first-of-type {
+        page-break-before: avoid;
+        break-before: avoid;
+    }
+
+    /* Hidden wrappers (display:none) must stay hidden */
+    .page-wrapper[style*="display: none"],
+    .page-wrapper[style*="display:none"] { display: none !important; }
+
+    #wall-menu-wrapper[style*="display: none"],
+    #wall-menu-wrapper[style*="display:none"] { display: none !important; }
 }

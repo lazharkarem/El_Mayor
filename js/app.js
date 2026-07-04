@@ -287,3 +287,36 @@ document.addEventListener('DOMContentLoaded', () => {
         section('SALSE', salseText) +
         section('PANE ARABO', simpleItems(menuData.paneArabo));
 });
+
+/* ─── PRINT with correct physical page size ────────────────────
+   Each format maps to its real print dimensions.
+   We inject a temporary <style> with the exact @page size,
+   call window.print(), then remove it so screen view is unchanged.
+──────────────────────────────────────────────────────────────── */
+function printMenu() {
+    const fmt = document.getElementById('format-select').value;
+
+    // Map format → exact page size for the printer
+    const sizes = {
+        'a3':           '420mm 594mm',   // A3 landscape pair (2 pages)
+        'desk15x30':    '150mm 300mm',   // Desk tent
+        'wall70x80':    '700mm 800mm',   // Wall poster
+        'kappa45x280':  '450mm 2800mm',  // Kappa tall banner
+    };
+
+    const pageSize = sizes[fmt] || 'auto';
+
+    // Inject a temporary style that overrides @page size
+    const style = document.createElement('style');
+    style.id = '__print-size-override';
+    style.textContent = `@page { size: ${pageSize}; margin: 0; }`;
+    document.head.appendChild(style);
+
+    window.print();
+
+    // Remove it after print dialog closes (slight delay for Safari)
+    setTimeout(() => {
+        const s = document.getElementById('__print-size-override');
+        if (s) s.remove();
+    }, 1000);
+}
