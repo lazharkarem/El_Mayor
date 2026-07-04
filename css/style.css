@@ -15,6 +15,7 @@
     --section-title:  var(--bg-red); /* section header color */
     --item-dot-color: rgba(255,255,255,0.2);
     --col-red-top-bg: url('https://www.transparenttextures.com/patterns/black-paper.png'), var(--bg-red);
+    --text-shadow:    0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.8);
     --brand:          'Alfa Slab One', cursive;
     --head:           'Oswald', sans-serif;
     --body:           'Roboto', sans-serif;
@@ -31,6 +32,7 @@
     --section-title:  var(--bg-red);
     --item-dot-color: rgba(0,0,0,0.18);
     --col-red-top-bg: url('https://www.transparenttextures.com/patterns/white-wall.png'), var(--bg-red);
+    --text-shadow:    0 1px 3px rgba(255,255,255,0.8), 0 0 8px rgba(255,255,255,1);
     --brand:          'Alfa Slab One', cursive;
     --head:           'Oswald', sans-serif;
     --body:           'Roboto', sans-serif;
@@ -47,6 +49,7 @@
     --section-title:  #efebe9;
     --item-dot-color: rgba(255,255,255,0.15);
     --col-red-top-bg: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), #5d4037;
+    --text-shadow:    0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.8);
     --brand:          'Alfa Slab One', cursive;
     --head:           'Oswald', sans-serif;
     --body:           'Roboto', sans-serif;
@@ -260,6 +263,7 @@ body {
     margin-bottom: 1rem;
     display: block;
     text-align: center;
+    text-shadow: var(--text-shadow);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -281,6 +285,7 @@ body {
     letter-spacing: 0.3px;
     flex-shrink: 1; /* allow wrapping for long texts like drinks */
     line-height: 1.2;
+    text-shadow: var(--text-shadow);
 }
 .item-dots {
     flex: 1;
@@ -295,6 +300,7 @@ body {
     font-size: 1rem;
     color: var(--text-white);
     flex-shrink: 0;
+    text-shadow: var(--text-shadow);
 }
 .item-desc {
     font-size: 0.78rem;
@@ -302,6 +308,7 @@ body {
     font-style: italic;
     line-height: 1.38;
     margin-top: 2px;
+    text-shadow: var(--text-shadow);
 }
 
 /* ══════════════════════════════════════════════════════════════
