@@ -1,7 +1,7 @@
 const menuData = {
   frittura: [
-    { name: "Patatine",              price: "€3.00", image: "assets/img_fries.jpg" },
-    { name: "Sticks mozzarella 5p",  price: "€4.00", image: "assets/img_mozzarella.jpg" },
+    { name: "Patatine",              price: "€4.00", image: "assets/img_fries.jpg" },
+    { name: "Sticks mozzarella ",  price: "€4.00", image: "assets/img_mozzarella.jpg" },
     { name: "Nuggets 8p",            price: "€4.50", image: "assets/img_nuggets.jpg" },
     { name: "Falafel 5p",            price: "€3.50", image: "assets/img_falafel.jpg" },
     { name: "Olive ascolane 5p",     price: "€4.00", image: "assets/img_olive.jpg" },
