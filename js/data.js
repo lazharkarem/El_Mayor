@@ -12,9 +12,7 @@ const menuData = {
     { name: "Samosa",    price: "€3.50", image: "assets/img_wings.jpg" },
     { name: "Bocconcini Philadelphia ",   price: "€5.00", image: "assets/img_jalapeno.jpg" },
     { name: "Brik",           price: "€2.50", image: "assets/img_jalapeno.jpg" },
-    
-    { name: "Mix frittura",         price: "€12.00", image: "assets/img_mixfrittura.jpg" }
- 
+   { name: "Mix frittura",         price: "€12.00", image: "assets/img_mixfrittura.jpg" }
   ],
 
   aggiunte: [
@@ -22,22 +20,21 @@ const menuData = {
     { name: "Mozzarella, Emmental, Provola aff., Funghi dolci, Funghi picc., Formaggio inglese, Patatine fritte, Patatine al forno, Insalata araba, Insalata mechwiya, Cipolla cotta", norm: "€1.00", maxi: "€1.50" },
     { name: "Carne Macinata, Nuggets, Mergez, Kebab, Chicken, Steak, Cotoletta, Carne di Cavallo", norm: "€1.50", maxi: "€2.50" }
   ],
-  salse: [
-    "Algerienne", "Andalouse", "Samurai",
-    "Cheezy", "Brazil", "Barbecue",
+  salse: €0.40 [
+    "Algerienne", "Andalouse", "Samurai", "Brazil", "Barbecue",
     "Chibiloute", "Hot Pili Pili", "Hannibal",
     "Maionese", "Ketchup", "Marocaine",
     "Pitakebab", "Curry", "Burger",
     "Tunisina", "Rosa", "Arissa",
     "Tabasco", "Thai Chili", "Senape",
-    "Vinaigrette", "Chiboulette"
+    , "Chiboulette"
   ],
   bibite: [
-    { name: "Coca cola, Fanta, Sprite, The limone/pesca", price: "€2.00" },
-    { name: "Coca cola, Coca cola zero, Sprite, Fanta, Lemonsoda, Acqua tonica, Fanta lemon, Chinotto", price: "€1.50" },
+    { name: "Coca cola, Fanta, Sprite, The limone/pesca", price: "€2.50" },
+    { name: "Coca cola, Coca cola zero, Sprite, Fanta, Lemonsoda, Acqua tonica, Fanta lemon, Chinotto", price: "€2.00" },
     { name: "RedBull, Monster", price: "€3.50" },
-    { name: "Coca cola 1 L", price: "€3.00" },
-    { name: "Moretti zero, Heineken zero, Becks zero", price: "€2.50" },
+    { name: "Coca cola 1 L", price: "€3.50" },
+    { name: "Moretti zero, Heineken zero, Becks zero", price: "€3.00" },
     { name: "Acqua naturale/frizzante", price: "€1.00" }
   ],
   chocoKebab: [
@@ -46,21 +43,21 @@ const menuData = {
     { name: "Choco super speciale", price: "€5.00", description: "Nutella panna e cioccolato bianco" }
   ],
   kebabVaschetta: {
-    prices: { small: "€3.00", norm: "€4.50", maxi: "€6.00" }
+    prices: { small: "€3.50", norm: "€5.00", maxi: "€6.50" }
   },
   kebab: [
-    { name: "El Mayor", norm: "€4.50", maxi: "€6.50", description: "Kebab, Cavolo cappuccio, Patatine, Salsa greca, Insalata michiwia (Peperoni, Pomodoro, Cipolla, Aglio arrosto)" },
-    { name: "Har", norm: "€4.50", maxi: "€6.50", description: "Kebab, Lattuga, Cipolla, Salsa greca, Arissa" },
-    { name: "Aadi", norm: "€4.50", maxi: "€6.50", description: "Kebab, Mozzarella, Patatine, Salsa barbecue" },
-    { name: "Elys", norm: "€6.00", maxi: "€7.50", description: "Kebab, Mozzarella, Emmental, Cheddar, Provola aff., Provola dolce" },
-    { name: "Jana", norm: "€4.50", maxi: "€6.50", description: "Kebab, Cavolo, Insalata, Arissa" },
-    { name: "Ayhem", norm: "€4.00", maxi: "€6.00", description: "Kebab, Patatine, Ketchup, Maionese" },
-    { name: "Maya", norm: "€4.00", maxi: "€6.00", description: "Kebab, Insalata verde, Salsa greca" },
-    { name: "Completo", norm: "€5.50", maxi: "€7.50", description: "Kebab, Patatine, Insalata michwiya, Lattuga, Cavolo cappuccio, Arissa, Salsa greca, Insalata araba (Cetrioli, Pomodoro, Cipolla, Menta)" }
+    { name: "El Mayor", norm: "€5.00", maxi: "€7.00", description: "Kebab, Cavolo cappuccio, Patatine, Salsa greca, Insalata michiwia (Peperoni, Pomodoro, Cipolla, Aglio arrosto)" },
+    { name: "Har", norm: "€5.00", maxi: "€7.00", description: "Kebab, Lattuga, Cipolla, Salsa greca, Arissa" },
+    { name: "Aadi", norm: "€5.00", maxi: "€7.00", description: "Kebab, Mozzarella, Patatine, Salsa barbecue" },
+    { name: "Elys", norm: "€6.50", maxi: "€8.00", description: "Kebab, Mozzarella, Emmental, Cheddar, Provola aff., Provola dolce" },
+    { name: "Jana", norm: "€5.00", maxi: "€7.00", description: "Kebab, Cavolo, Insalata, Arissa" },
+    { name: "Ayhem", norm: "€5.00", maxi: "€7.00", description: "Kebab, Patatine, Ketchup, Maionese" },
+    { name: "Maya", norm: "€5.00", maxi: "€7.00", description: "Kebab, Insalata verde, Salsa greca" },
+    { name: "Completo", norm: "€6.50", maxi: "8.00", description: "Kebab, Patatine, Insalata michwiya, Lattuga, Cavolo cappuccio, Arissa, Salsa greca, Insalata araba (Cetrioli, Pomodoro, Cipolla, Menta)" }
   ],
   frenchTacos: {
-    baseIngredients: "Salsa di formaggio, Cheddar, Patatine, Salsa a scelta",
-    meatOptions: "Carne Macinata, Nuggets, Mergez, Kebab, Chicken, Steak, Cotoletta, Carne di Cavallo",
+    baseIngredients: "Mozzarella, Cheddar, Patatine, Salsa a scelta",
+    meatOptions: "Nuggets, Mergez, Kebab, Chicken, Cotoletta, Carne di Cavallo",
     sizes: [
       { name: "M (1 tipo di carne)", singolo: "€5.50", menu: "€7.50" },
       { name: "L (2 tipi di carne)", singolo: "€7.50", menu: "€9.50" },
