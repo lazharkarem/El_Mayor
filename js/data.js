@@ -96,14 +96,14 @@ const menuData = {
     { name: "Fritto misto", price: "€13.90" }
   ],
   vegetariano: [
-    { name: "El Mayor Veggy", description: "Falafel, Cavolo cappuccio, Patatine, Insalata michwiya", norm: "€4.50", maxi: "€6.50" },
-    { name: "Caprese", description: "Mozzarella, Pomodoro, Lattuga, Origano, Olio", norm: "€4.00", maxi: "€6.00" },
-    { name: "Veggy", description: "Lattuga, Pomodoro, Mozzarella, Patatine, Ketchup, Maionese", norm: "€4.50", maxi: "€6.50" }
+    { name: "El Mayor Veggy", description: "Falafel, Cavolo cappuccio, Patatine, Insalata michwiya", norm: "€5.00", maxi: "€7.00" },
+    { name: "Caprese", description: "Mozzarella, Pomodoro, Lattuga, Origano, Olio", norm: "€4.50", maxi: "€6.50" },
+    { name: "Veggy", description: "Lattuga, Pomodoro, Mozzarella, Patatine, Ketchup, Maionese", norm: "€5.00", maxi: "€7.00" }
   ],
   piatti: [
-    { name: "Kebab", price: "€7.50", image: "assets/piatti_kebab.png" },
-    { name: "Wings", price: "€7.50", image: "assets/piatti_wings.png" },
-    { name: "Mergez", price: "€8.50", image: "assets/piatti_mergez.png" },
-    { name: "Mix Carne", description: "(Kebab, Wings, Mergez, Agnello, Patatine, Insalata)", price: "€15.50", image: "assets/piatti_mix.png" }
+    { name: "Kebab", price: "€8.50", image: "assets/piatti_kebab.png" },
+    { name: "Wings", price: "€8.50", image: "assets/piatti_wings.png" },
+    { name: "Mergez", price: "€9.00", image: "assets/piatti_mergez.png" },
+    { name: "Mix Carne", description: "(Kebab, Wings, Mergez, Agnello, Patatine, Insalata)", price: "€16.50", image: "assets/piatti_mix.png" }
   ]
 };
