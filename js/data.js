@@ -17,8 +17,8 @@ const menuData = {
 
   aggiunte: [
     { name: "Lattuga, pomodoro, cipolla, cavolo cappuccio", norm: "€0.50", maxi: "€0.80" },
-    { name: "Mozzarella, Emmental, Provola aff., Funghi dolci, Funghi picc., Formaggio inglese, Patatine fritte, Patatine al forno, Insalata araba, Insalata mechwiya, Cipolla cotta", norm: "€1.00", maxi: "€1.50" },
-    { name: "Carne Macinata, Nuggets, Mergez, Kebab, Chicken, Steak, Cotoletta, Carne di Cavallo", norm: "€1.50", maxi: "€2.50" }
+    { name: "Mozzarella, Emmental, Provola aff., Funghi dolci, Funghi picc., Formaggio inglese, Patatine fritte, Patatine al forno, Insalata araba, Insalata mechwiya, Cipolla cotta", norm: "€1.50", maxi: "€2.00" },
+    { name: "Carne Macinata, Nuggets, Mergez, Kebab, Chicken, Steak, Cotoletta, Carne di Cavallo", norm: "€1.50", maxi: "€3.00" }
   ],
   salse: €0.40 [
     "Algerienne", "Andalouse", "Samurai", "Brazil", "Barbecue",
@@ -27,7 +27,7 @@ const menuData = {
     "Pitakebab", "Curry", "Burger",
     "Tunisina", "Rosa", "Arissa",
     "Tabasco", "Thai Chili", "Senape",
-    , "Chiboulette"
+   "Chiboulette"
   ],
   bibite: [
     { name: "Coca cola, Fanta, Sprite, The limone/pesca", price: "€2.50" },
@@ -67,7 +67,7 @@ const menuData = {
   menuBambini: [
     { name: "Chicken", description: "Cotoletta, Maionese, Lattuga", sing: "€4.50", menu: "€6.50" },
     { name: "Burger", description: "Burger, Lattuga, Maionese", sing: "€4.50", menu: "€6.50" },
-    { name: "Veggy", description: "Cotoletta di soia, Lattuga, Maionese", sing: "€4.50", menu: "€6.50" },
+    { name: "Veggy", description: "Falafel, Lattuga, Maionese", sing: "€4.50", menu: "€6.50" },
     { name: "Fish", description: "Cotoletta di merluzzo, Lattuga, Maionese", sing: "€4.50", menu: "€6.50" },
     { name: "Hot-Dog", description: "Wurstel, Ketchup, Maionese", sing: "€4.00", menu: "€6.00" },
     
