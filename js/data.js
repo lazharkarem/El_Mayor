@@ -49,7 +49,7 @@ const menuData = {
     { name: "El Mayor", norm: "€5.00", maxi: "€7.00", description: "Kebab, Cavolo cappuccio, Patatine, Salsa greca, Insalata michiwia (Peperoni, Pomodoro, Cipolla, Aglio arrosto)" },
     { name: "Har", norm: "€5.00", maxi: "€7.00", description: "Kebab, Lattuga, Cipolla, Salsa greca, Arissa" },
     { name: "Aadi", norm: "€5.00", maxi: "€7.00", description: "Kebab, Mozzarella, Patatine, Salsa barbecue" },
-    { name: "Elys", norm: "€6.50", maxi: "€8.00", description: "Kebab, Mozzarella, Emmental, Cheddar, Provola aff., Provola dolce" },
+    { name: "Elys", norm: "€6.50", maxi: "€8.00", description: "Kebab, Mozzarella, Emmental, Cheddar, Provola aff.," },
     { name: "Jana", norm: "€5.00", maxi: "€7.00", description: "Kebab, Cavolo, Insalata, Arissa" },
     { name: "Ayhem", norm: "€5.00", maxi: "€7.00", description: "Kebab, Patatine, Ketchup, Maionese" },
     { name: "Maya", norm: "€5.00", maxi: "€7.00", description: "Kebab, Insalata verde, Salsa greca" },
@@ -59,9 +59,9 @@ const menuData = {
     baseIngredients: "Mozzarella, Cheddar, Patatine, Salsa a scelta",
     meatOptions: "Nuggets, Mergez, Kebab, Chicken, Cotoletta, Carne di Cavallo",
     sizes: [
-      { name: "M (1 tipo di carne)", singolo: "€5.50", menu: "€7.50" },
-      { name: "L (2 tipi di carne)", singolo: "€7.50", menu: "€9.50" },
-      { name: "XL (3 tipi di carne)", singolo: "€10.50", menu: "€12.50" }
+      { name: "M (1 tipo di carne)", singolo: "€7.00",},
+      { name: "L (2 tipi di carne)", singolo: "€9.00", },
+      { name: "XL (3 tipi di carne)", singolo: "€12.00", }
     ]
   },
   menuBambini: [
@@ -70,22 +70,22 @@ const menuData = {
     { name: "Veggy", description: "Cotoletta di soia, Lattuga, Maionese", sing: "€4.50", menu: "€6.50" },
     { name: "Fish", description: "Cotoletta di merluzzo, Lattuga, Maionese", sing: "€4.50", menu: "€6.50" },
     { name: "Hot-Dog", description: "Wurstel, Ketchup, Maionese", sing: "€4.00", menu: "€6.00" },
-    { name: "Libanese", description: "Kebab, Salsa tunisina, Cavolo cappuccio", sing: "€4.50", menu: "€6.50" }
+    
   ],
   paneArabo: [
-    { name: "Kebab", description: "Kebab, Lattuga, Salse a scelto", price: "€4.50" },
-    { name: "Chicken", description: "Cotoletta, Lattuga, Cipolla croccante, Salse a scelta", price: "€4.50" },
-    { name: "Mergez", description: "Salsiccia, Lattuga, Cipolla croccante, Salse a scelta", price: "€4.50" },
-    { name: "Cotoletta", description: "Petto di pollo, Lattuga, Salse a scelta", price: "€4.50" }
+    { name: "Kebab", description: "Kebab, Lattuga, Salse a scelto", price: "€5.00" },
+    { name: "Cotoletta", description: "Cotoletta, Lattuga, Cipolla croccante, Salse a scelta", price: "€5.00" },
+    { name: "Mergez", description: "Salsiccia, Lattuga, Cipolla croccante, Salse a scelta", price: "€5.00" },
+    { name: "Chiken", description: "Petto di pollo, Lattuga, Salse a scelta", price: "€5.00" }
   ],
   panini: [
-    { name: "Cavallo", description: "Carne di cavallo, Lattuga, Cipolla, Emmental, Patatine, Ketchup, Maionese", price: "€6.50" },
-    { name: "Petto di pollo", description: "Petto di pollo, Lattuga, Sottilette, Patatine, Ketchup, Maionese", price: "€6.50" },
-    { name: "Salsiccia", description: "Salsiccia, Insalata araba, Lattuga, Arissa, Patatine", price: "€6.50" },
-    { name: "Hamburger", description: "Hamburger, Lattuga, Form. inglese, Patatine, Ketchup, Maionese", price: "€6.50" },
-    { name: "Wurstel", description: "Wurstel, Mozzarella, Patatine, Ketchup, Maionese", price: "€4.50" },
-    { name: "Croccantes", description: "Pollo croccante, provola dolce, patatine, ketchup, maionese, cipolla croccante", price: "€6.50" },
-    { name: "Cotoletta", description: "Cotoletta di pollo, Provola aff., Patatine, Ketchup, Maionese", price: "€6.50" }
+    { name: "Cavallo", description: "Carne di cavallo, Lattuga, Cipolla, Emmental, Patatine, Ketchup, Maionese", price: "€8.00" },
+    { name: "Petto di pollo", description: "Petto di pollo, Lattuga, Sottilette, Patatine, Ketchup, Maionese", price: "€8.00" },
+    { name: "Salsiccia", description: "Salsiccia, Insalata araba, Lattuga, Arissa, Patatine", price: "€8.00" },
+    { name: "Hamburger", description: "Hamburger, Lattuga, Form. inglese, Patatine, Ketchup, Maionese", price: "€8.00" },
+    { name: "Wurstel", description: "Wurstel, Mozzarella, Patatine, Ketchup, Maionese", price: "€5.50" },
+    { name: "Croccantes", description: "Pollo croccante, provola dolce, patatine, ketchup, maionese, cipolla croccante", price: "€8.00" },
+    { name: "Cotoletta", description: "Cotoletta di pollo, Provola aff., Patatine, Ketchup, Maionese", price: "€8.00" }
   ],
   cousCous: [
     { name: "Verdure", price: "€7.00" },
