@@ -1,15 +1,22 @@
 const menuData = {
   frittura: [
-    { name: "Patatine",              price: "€4.00", image: "assets/img_fries.jpg" },
-    { name: "Sticks mozzarella ",  price: "€4.00", image: "assets/img_mozzarella.jpg" },
-    { name: "Nuggets 8p",            price: "€4.50", image: "assets/img_nuggets.jpg" },
-    { name: "Falafel 5p",            price: "€3.50", image: "assets/img_falafel.jpg" },
-    { name: "Olive ascolane 5p",     price: "€4.00", image: "assets/img_olive.jpg" },
-    { name: "Anelli di cipolla 8p",  price: "€3.50", image: "assets/img_onionrings.jpg" },
-    { name: "Alette di pollo 4p",    price: "€4.50", image: "assets/img_wings.jpg" },
-    { name: "Jalapeño 4p",           price: "€4.00", image: "assets/img_jalapeno.jpg" },
-    { name: "Mix frittura",          price: "€6.50", image: "assets/img_mixfrittura.jpg" }
+    { name: "Patatine",              price: "€3.50", image: "assets/img_fries.jpg" },
+    { name: "Sticks mozzarella ",  price: "€4.50", image: "assets/img_mozzarella.jpg" },
+    { name: "Nuggets ",            price: "€4.50", image: "assets/img_nuggets.jpg" },
+    { name: "Falafel ",            price: "€4.00", image: "assets/img_falafel.jpg" },
+    { name: "Mozzarelline pan.",     price: "€4.50", image: "assets/img_olive.jpg" },
+    { name: "Anelli di cipolla ",  price: "€3.50", image: "assets/img_onionrings.jpg" },
+    { name: "Alette di pollo ",    price: "€5.00", image: "assets/img_wings.jpg" },
+    { name: "twister",           price: "€4.50", image: "assets/img_jalapeno.jpg" },
+    { name: "Crochette di patate  ",  price: "€3.50", image: "assets/img_onionrings.jpg" },
+    { name: "Samosa",    price: "€3.50", image: "assets/img_wings.jpg" },
+    { name: "Bocconcini Philadelphia ",   price: "€5.00", image: "assets/img_jalapeno.jpg" },
+    { name: "Brik",           price: "€2.50", image: "assets/img_jalapeno.jpg" },
+    
+    { name: "Mix frittura",         price: "€12.00", image: "assets/img_mixfrittura.jpg" }
+ 
   ],
+
   aggiunte: [
     { name: "Lattuga, pomodoro, cipolla, cavolo cappuccio", norm: "€0.50", maxi: "€0.80" },
     { name: "Mozzarella, Emmental, Provola aff., Funghi dolci, Funghi picc., Formaggio inglese, Patatine fritte, Patatine al forno, Insalata araba, Insalata mechwiya, Cipolla cotta", norm: "€1.00", maxi: "€1.50" },
