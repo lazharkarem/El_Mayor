@@ -290,53 +290,122 @@ document.addEventListener('DOMContentLoaded', () => {
         section('PANE ARABO', simpleItems(menuData.paneArabo));
 });
 
-/* ─── PRINT with correct physical page size ────────────────────
-   Each format maps to its real print dimensions.
-   We inject a temporary <style> with the exact @page size,
-   call window.print(), then remove it so screen view is unchanged.
-──────────────────────────────────────────────────────────────── */
+/* ─── PRINT — opens a dedicated print window at exact physical size ────
+   Opening a fresh window lets us:
+     • Set the exact @page dimensions for the printer
+     • Include ONLY the active format's content (no blank pages)
+     • Resolve all asset URLs via <base href>
+     • Apply background-color printing (-webkit-print-color-adjust)
+──────────────────────────────────────────────────────────────────────── */
 function printMenu() {
-    const fmt = document.getElementById('format-select').value;
-
-    // Map format → exact page size (width height)
-    const sizes = {
-        'a3':           '594mm 420mm',   // A3 landscape (2 pages side by side)
-        'desk15x30':    '150mm 300mm',   // Desk tent portrait
-        'wall70x80':    '700mm 800mm',   // Wall poster portrait
-        'kappa45x280':  '2800mm 450mm',  // Kappa wide banner landscape
-    };
-
-    const pageSize = sizes[fmt] || '594mm 420mm';
-
-    // Remove any old override first
-    const old = document.getElementById('__print-size-override');
-    if (old) old.remove();
-
-    // Hide pages that are not active, show only the one being printed
+    const fmt   = document.getElementById('format-select').value;
+    const theme = document.body.getAttribute('data-theme') || 'dark';
     const isKappa = fmt === 'kappa45x280';
-    const hideRules = isKappa
-        ? `#menu-page-1, #menu-page-2 { display: none !important; }
-           #wall-menu-wrapper { display: block !important; overflow: visible !important; }`
-        : `#wall-menu-wrapper { display: none !important; }`;
 
-    // Inject temporary print style
-    const style = document.createElement('style');
-    style.id = '__print-size-override';
-    style.textContent = `
-        @page { size: ${pageSize}; margin: 0; }
-        @media print {
-            ${hideRules}
-            body { background: none !important; }
-            .wall-grid { min-width: unset !important; width: 100% !important; }
-        }
-    `;
-    document.head.appendChild(style);
+    /* Physical page dimensions in mm [width, height] */
+    const dims = {
+        'a3':           [420, 297],   // A3 landscape per page
+        'desk15x30':    [150, 300],   // Desk tent portrait
+        'wall70x80':    [700, 800],   // Wall poster portrait
+        'kappa45x280':  [2800, 450],  // Wide horizontal banner
+    };
+    const [pw, ph] = dims[fmt] || dims['a3'];
 
-    window.print();
+    /* Resolve base URL so relative paths (assets/, css/) work in new window */
+    const baseHref = window.location.href.replace(/[^/]*(\?.*)?$/, '');
 
-    // Remove it after print dialog closes
-    setTimeout(() => {
-        const s = document.getElementById('__print-size-override');
-        if (s) s.remove();
-    }, 1500);
+    /* ── Build the HTML content to print ─────────────────────── */
+    let bodyContent;
+
+    if (isKappa) {
+        /* Kappa: render only the wall grid banner */
+        const gridInner = document.getElementById('wall-grid-container').innerHTML;
+        bodyContent = `
+        <div class="wall-theme" style="overflow:visible;width:${pw}mm;">
+          <main class="wall-grid" id="wall-grid-container"
+                style="min-width:unset;width:${pw}mm;height:${ph}mm;">
+            ${gridInner}
+          </main>
+        </div>`;
+    } else {
+        /* A3 / desk / wall: clone each menu page wrapper */
+        bodyContent = Array.from(document.querySelectorAll('.menu-wrapper'))
+            .map(w => {
+                const cl = w.cloneNode(true);
+                cl.style.display   = 'block';
+                cl.style.margin    = '0';
+                cl.style.boxShadow = 'none';
+                cl.style.width     = pw + 'mm';
+                cl.style.height    = ph + 'mm';
+                cl.style.overflow  = 'hidden';
+                cl.setAttribute('data-format', fmt);
+                return cl.outerHTML;
+            }).join('\n');
+    }
+
+    /* ── Open a dedicated print window ───────────────────────── */
+    const win = window.open('', '_blank');
+    if (!win) {
+        alert('Pop-up blocked! Please allow pop-ups for this page and try again.');
+        return;
+    }
+
+    win.document.write(`<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <base href="${baseHref}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @page {
+      size: ${pw}mm ${ph}mm;
+      margin: 0;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      background: none !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .no-print { display: none !important; }
+    .toolbar  { display: none !important; }
+
+    /* Each menu page fills exactly one printed sheet */
+    .page-wrapper {
+      margin: 0 !important;
+      box-shadow: none !important;
+      width: ${pw}mm !important;
+      height: ${ph}mm !important;
+      overflow: hidden !important;
+      page-break-after: always;
+      break-after: page;
+    }
+    .page-wrapper:last-child {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    /* Kappa banner */
+    .wall-theme { overflow: visible !important; }
+    .wall-grid  {
+      min-width: unset !important;
+      width: ${pw}mm !important;
+      height: ${ph}mm !important;
+    }
+    .wall-col, .wall-col-double { flex: 1 !important; }
+  </style>
+</head>
+<body data-theme="${theme}">
+${bodyContent}
+<script>
+  window.addEventListener('load', function () {
+    setTimeout(function () { window.print(); }, 1200);
+  });
+<\/script>
+</body>
+</html>`);
+    win.document.close();
 }
+
