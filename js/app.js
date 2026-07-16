@@ -298,27 +298,45 @@ document.addEventListener('DOMContentLoaded', () => {
 function printMenu() {
     const fmt = document.getElementById('format-select').value;
 
-    // Map format → exact page size for the printer
+    // Map format → exact page size (width height)
     const sizes = {
-        'a3':           '420mm 594mm',   // A3 landscape pair (2 pages)
-        'desk15x30':    '150mm 300mm',   // Desk tent
-        'wall70x80':    '700mm 800mm',   // Wall poster
-        'kappa45x280':  '450mm 2800mm',  // Kappa tall banner
+        'a3':           '594mm 420mm',   // A3 landscape (2 pages side by side)
+        'desk15x30':    '150mm 300mm',   // Desk tent portrait
+        'wall70x80':    '700mm 800mm',   // Wall poster portrait
+        'kappa45x280':  '2800mm 450mm',  // Kappa wide banner landscape
     };
 
-    const pageSize = sizes[fmt] || 'auto';
+    const pageSize = sizes[fmt] || '594mm 420mm';
 
-    // Inject a temporary style that overrides @page size
+    // Remove any old override first
+    const old = document.getElementById('__print-size-override');
+    if (old) old.remove();
+
+    // Hide pages that are not active, show only the one being printed
+    const isKappa = fmt === 'kappa45x280';
+    const hideRules = isKappa
+        ? `#menu-page-1, #menu-page-2 { display: none !important; }
+           #wall-menu-wrapper { display: block !important; overflow: visible !important; }`
+        : `#wall-menu-wrapper { display: none !important; }`;
+
+    // Inject temporary print style
     const style = document.createElement('style');
     style.id = '__print-size-override';
-    style.textContent = `@page { size: ${pageSize}; margin: 0; }`;
+    style.textContent = `
+        @page { size: ${pageSize}; margin: 0; }
+        @media print {
+            ${hideRules}
+            body { background: none !important; }
+            .wall-grid { min-width: unset !important; width: 100% !important; }
+        }
+    `;
     document.head.appendChild(style);
 
     window.print();
 
-    // Remove it after print dialog closes (slight delay for Safari)
+    // Remove it after print dialog closes
     setTimeout(() => {
         const s = document.getElementById('__print-size-override');
         if (s) s.remove();
-    }, 1000);
+    }, 1500);
 }
