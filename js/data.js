@@ -20,14 +20,15 @@ const menuData = {
     { name: "Mozzarella, Emmental, Provola aff., Funghi dolci, Funghi picc., Formaggio inglese, Patatine fritte, Patatine al forno, Insalata araba, Insalata mechwiya, Cipolla cotta", norm: "€1.50", maxi: "€2.00" },
     { name: "Carne Macinata, Nuggets, Mergez, Kebab, Chicken, Steak, Cotoletta, Carne di Cavallo", norm: "€1.50", maxi: "€3.00" }
   ],
-  salse: €0.40 [
+  salsePrice: "€0.40",
+  salse: [
     "Algerienne", "Andalouse", "Samurai", "Brazil", "Barbecue",
     "Chibiloute", "Hot Pili Pili", "Hannibal",
     "Maionese", "Ketchup", "Marocaine",
     "Pitakebab", "Curry", "Burger",
     "Tunisina", "Rosa", "Arissa",
     "Tabasco", "Thai Chili", "Senape",
-   "Chiboulette"
+    "Chiboulette"
   ],
   bibite: [
     { name: "Coca cola, Fanta, Sprite, The limone/pesca", price: "€2.50" },
@@ -59,18 +60,17 @@ const menuData = {
     baseIngredients: "Mozzarella, Cheddar, Patatine, Salsa a scelta",
     meatOptions: "Nuggets, Mergez, Kebab, Chicken, Cotoletta, Carne di Cavallo",
     sizes: [
-      { name: "M (1 tipo di carne)", singolo: "€7.00",},
-      { name: "L (2 tipi di carne)", singolo: "€9.00", },
-      { name: "XL (3 tipi di carne)", singolo: "€12.00", }
+      { name: "M (1 tipo di carne)", singolo: "€7.00", menu: "€9.00" },
+      { name: "L (2 tipi di carne)", singolo: "€9.00",  menu: "€11.00" },
+      { name: "XL (3 tipi di carne)", singolo: "€12.00", menu: "€14.00" }
     ]
   },
   menuBambini: [
-    { name: "Chicken", description: "Cotoletta, Maionese, Lattuga", sing: "€4.50", menu: "€6.50" },
-    { name: "Burger", description: "Burger, Lattuga, Maionese", sing: "€4.50", menu: "€6.50" },
-    { name: "Veggy", description: "Falafel, Lattuga, Maionese", sing: "€4.50", menu: "€6.50" },
-    { name: "Fish", description: "Cotoletta di merluzzo, Lattuga, Maionese", sing: "€4.50", menu: "€6.50" },
-    { name: "Hot-Dog", description: "Wurstel, Ketchup, Maionese", sing: "€4.00", menu: "€6.00" },
-    
+    { name: "Chicken",  description: "Cotoletta, Maionese, Lattuga",              singolo: "€4.50", menu: "€6.50" },
+    { name: "Burger",   description: "Burger, Lattuga, Maionese",                  singolo: "€4.50", menu: "€6.50" },
+    { name: "Veggy",    description: "Falafel, Lattuga, Maionese",                 singolo: "€4.50", menu: "€6.50" },
+    { name: "Fish",     description: "Cotoletta di merluzzo, Lattuga, Maionese",   singolo: "€4.50", menu: "€6.50" },
+    { name: "Hot-Dog",  description: "Wurstel, Ketchup, Maionese",                 singolo: "€4.00", menu: "€6.00" }
   ],
   paneArabo: [
     { name: "Kebab", description: "Kebab, Lattuga, Salse a scelto", price: "€5.00" },

@@ -193,23 +193,25 @@ document.addEventListener('DOMContentLoaded', () => {
             name: it.name, price: it.price, description: it.description
         })));
 
-        /* Col 7 — SALSE + BIBITE + CHOCO KEBAB */
+        /* Col 7 — SALSE + BIBITE */
+        const salsePriceLabel = menuData.salsePrice ? ` (${menuData.salsePrice})` : '';
         const salseRows = `<div class="salse-grid">${menuData.salse.map(s => `<span class="w-salsa">${s}</span>`).join('')}</div>`;
         const col7 = `<div class="wall-col-double">
             <div class="wall-panel">
-                <div class="wall-title">SALSE</div>
+                <div class="wall-title">SALSE${salsePriceLabel}</div>
                 <div class="wall-body">${salseRows}</div>
             </div>
             ${wallPanel('BIBITE', menuData.bibite)}
         </div>`;
 
         /* Col 8 — CHOCO KEBAB + KEBAB VASCHETTA */
+        const vp = menuData.kebabVaschetta?.prices || {};
         const col8 = wallDoubleCol('CHOCO KEBAB', menuData.chocoKebab.map(it => ({
             name: it.name, price: it.price, description: it.description
         })), 'KEBAB IN VASCHETTA', [
-            {name: 'Small', price: '€3.50'},
-            {name: 'Normal', price: '€5.00'},
-            {name: 'Maxi', price: '€6.50'},
+            {name: 'Small',  price: vp.small || '€3.50'},
+            {name: 'Normal', price: vp.norm  || '€5.00'},
+            {name: 'Maxi',   price: vp.maxi  || '€6.50'},
             ...menuData.aggiunte.map(it => ({name: it.name.split(',')[0], price: it.norm + ' / ' + it.maxi}))
         ], 'assets/choco.png');
 
