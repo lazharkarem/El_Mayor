@@ -470,6 +470,46 @@ body {
 [data-format="wall70x80"] .col-top-food          { height: 320px; }
 
 /* ══════════════════════════════════════════════════════════════
+   WALL MENU (POSTER 70x80) THEME — Single Large Page
+══════════════════════════════════════════════════════════════ */
+.poster-grid {
+    display: flex;
+    flex-direction: row;
+    min-width: 2100px;
+    height: 2400px;
+    background: var(--bg-dark);
+    border-top: 15px solid var(--bg-red);
+    border-bottom: 15px solid var(--bg-red);
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+.poster-grid .wall-col, .poster-grid .wall-col-double {
+    border-right-width: 6px;
+}
+.poster-grid .wall-panel {
+    border-bottom-width: 6px;
+}
+.poster-grid .wall-img-panel {
+    flex: 0 0 450px;
+}
+.poster-grid .wall-title {
+    font-size: 4rem;
+    padding: 25px;
+    border-bottom: 6px solid rgba(224, 224, 224, 0.15);
+}
+.poster-grid .w-name {
+    font-size: 2.1rem;
+    padding: 8px 0;
+}
+.poster-grid .w-price {
+    font-size: 2.5rem;
+}
+.poster-grid .w-desc {
+    font-size: 1.5rem;
+    margin-top: 5px;
+}
+
+/* ══════════════════════════════════════════════════════════════
    WALL MENU (KAPPA 45x280) THEME — Horizontal Dark Banner
 ══════════════════════════════════════════════════════════════ */
 .wall-theme {

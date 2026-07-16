@@ -2,7 +2,7 @@ const menuData = {
   frittura: [
     { name: "Patatine",              price: "€3.50", image: "assets/img_fries.jpg" },
     { name: "Sticks mozzarella ",  price: "€4.50", image: "assets/img_mozzarella.jpg" },
-    { name: "Nuggets ",            price: "€4.50", image: "assets/img_nuggets.jpg" },
+    { name: "Nuggets ",            price: "€4.50", image: "assets/img_nuggets.png" },
     { name: "Falafel ",            price: "€4.00", image: "assets/img_falafel.jpg" },
     { name: "Mozzarelline pan.",     price: "€4.50", image: "assets/img_olive.jpg" },
     { name: "Anelli di cipolla ",  price: "€3.50", image: "assets/img_onionrings.jpg" },
@@ -39,9 +39,9 @@ const menuData = {
     { name: "Acqua naturale/frizzante", price: "€1.00" }
   ],
   chocoKebab: [
-    { name: "Choco kebab", price: "€4.00", description: "Topping: Nocciola, Fragola, Caramello, Vaniglia, Frutti di bosco, Cioccolato, Caffè. Granelle: Noccioline, Pistacchio, Cocco, Mandorle" },
-    { name: "Choco speciale", price: "€4.50", description: "Nutella e panna / Nutella e cioccolato bianco" },
-    { name: "Choco super speciale", price: "€5.00", description: "Nutella panna e cioccolato bianco" }
+    { name: "Choco kebab", price: "€4.00", description: "Topping: Nocciola, Fragola, Caramello, Vaniglia, Frutti di bosco, Cioccolato, Caffè. Granelle: Noccioline, Pistacchio, Cocco, Mandorle", image: "assets/choco.png" },
+    { name: "Choco speciale", price: "€4.50", description: "Nutella e panna / Nutella e cioccolato bianco", image: "assets/choco_speciale.png" },
+    { name: "Choco super speciale", price: "€5.00", description: "Nutella panna e cioccolato bianco", image: "assets/choco_super.png" }
   ],
   kebabVaschetta: {
     prices: { small: "€3.50", norm: "€5.00", maxi: "€6.50" }

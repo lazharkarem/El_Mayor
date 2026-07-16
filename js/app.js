@@ -18,16 +18,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     formatSelect.addEventListener('change', (e) => {
         const fmt = e.target.value;
+        
+        // Toggle visibility based on format
+        const a3Wrappers = document.querySelectorAll('.menu-wrapper');
+        const wallWrapper = document.getElementById('wall-menu-wrapper');
+        const posterWrapper = document.getElementById('poster-menu-wrapper');
+
         if (fmt === 'kappa45x280') {
-            wrappers.forEach(w => w.style.display = 'none');
+            a3Wrappers.forEach(w => w.style.display = 'none');
+            posterWrapper.style.display = 'none';
             wallWrapper.style.display = 'block';
             renderWallMenu();
+        } else if (fmt === 'wall70x80') {
+            a3Wrappers.forEach(w => w.style.display = 'none');
+            wallWrapper.style.display = 'none';
+            posterWrapper.style.display = 'block';
+            renderPosterMenu();
         } else {
-            wrappers.forEach(w => {
+            a3Wrappers.forEach(w => {
                 w.style.display = 'block';
                 w.setAttribute('data-format', fmt);
             });
             wallWrapper.style.display = 'none';
+            posterWrapper.style.display = 'none';
             // Reset so next time it re-renders fresh
             document.getElementById('wall-grid-container').innerHTML = '';
         }
@@ -95,45 +108,43 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`).join('');
     }
 
+    /* ─── WALL & POSTER HELPERS ───────────────────────────────── */
+    function wallImgPanel(url) {
+        return `<div class="wall-img-panel">
+            <div class="wall-img" style="background-image:url('${url}')"></div>
+        </div>`;
+    }
+
+    function wallPanel(title, items, imgUrl = null) {
+        const rows = items.map(it => `
+            <div class="wall-item">
+                <div class="wall-item-row">
+                    <span class="w-name">${it.name}</span>
+                    <span class="w-price">${it.price || ((it.norm || '') + (it.maxi ? ' / ' + it.maxi : ''))}</span>
+                </div>
+                ${it.description ? `<p class="w-desc">${it.description}</p>` : ''}
+            </div>`).join('');
+        
+        const imgHtml = imgUrl ? wallImgPanel(imgUrl) : '';
+        return `
+            <div class="wall-panel">
+                <div class="wall-title">${title}</div>
+                ${imgHtml}
+                <div class="wall-body">${rows}</div>
+            </div>`;
+    }
+
+    function wallDoubleCol(panelA_title, panelA_items, panelB_title, panelB_items, imgUrl = null) {
+        return `<div class="wall-col-double">
+            ${wallPanel(panelA_title, panelA_items, imgUrl)}
+            ${wallPanel(panelB_title, panelB_items)}
+        </div>`;
+    }
+
     /* ─── WALL MENU (kappa45x280) — Horizontal Dark Banner ────── */
     function renderWallMenu() {
         const wallGrid = document.getElementById('wall-grid-container');
         if (wallGrid.innerHTML.trim() !== '') return;
-
-        /* Image Panel */
-        function wallImgPanel(url) {
-            return `<div class="wall-img-panel">
-                <div class="wall-img" style="background-image:url('${url}')"></div>
-            </div>`;
-        }
-
-        /* Single-title column panel */
-        function wallPanel(title, items, imgUrl = null) {
-            const rows = items.map(it => `
-                <div class="wall-item">
-                    <div class="wall-item-row">
-                        <span class="w-name">${it.name}</span>
-                        <span class="w-price">${it.price || ((it.norm || '') + (it.maxi ? ' / ' + it.maxi : ''))}</span>
-                    </div>
-                    ${it.description ? `<p class="w-desc">${it.description}</p>` : ''}
-                </div>`).join('');
-            
-            const imgHtml = imgUrl ? wallImgPanel(imgUrl) : '';
-            return `
-                <div class="wall-panel">
-                    <div class="wall-title">${title}</div>
-                    ${imgHtml}
-                    <div class="wall-body">${rows}</div>
-                </div>`;
-        }
-
-        /* Double-stacked column: two panels sharing full height */
-        function wallDoubleCol(panelA_title, panelA_items, panelB_title, panelB_items, imgUrl = null) {
-            return `<div class="wall-col-double">
-                ${wallPanel(panelA_title, panelA_items, imgUrl)}
-                ${wallPanel(panelB_title, panelB_items)}
-            </div>`;
-        }
 
         /* Col 1 — KEBAB */
         const col1 = `<div class="wall-col">
@@ -218,6 +229,49 @@ document.addEventListener('DOMContentLoaded', () => {
         wallGrid.innerHTML = col1 + col2 + col3 + colBrand + col5 + col6 + col7 + col8;
     }
 
+    /* ─── POSTER MENU (70x80) — Single Page Square Banner ────── */
+    function renderPosterMenu() {
+        const posterGrid = document.getElementById('poster-grid-container');
+        if (posterGrid.innerHTML.trim() !== '') return;
+
+        /* Col 1 */
+        const col1 = `<div class="wall-col">
+            ${wallPanel('KEBAB', menuData.kebab.map(it => ({name: it.name, price: it.norm + ' / ' + it.maxi, description: it.description})), 'assets/kebab.png')}
+            ${wallPanel('FRITTURA', menuData.frittura.map(it => ({name:it.name, price:it.price})))}
+            <div class="wall-panel">
+                <div class="wall-title">SALSE${menuData.salsePrice ? ` (${menuData.salsePrice})` : ''}</div>
+                <div class="wall-body"><div class="salse-grid">${menuData.salse.map(s => `<span class="w-salsa">${s}</span>`).join('')}</div></div>
+            </div>
+            ${wallPanel('BIBITE', menuData.bibite)}
+        </div>`;
+
+        /* Col 2 */
+        const tacoData = menuData.frenchTacos.sizes.map(s => ({name: s.name, price: s.singolo + ' / ' + s.menu, description: menuData.frenchTacos.baseIngredients}));
+        const vp = menuData.kebabVaschetta?.prices || {};
+        const col2 = `<div class="wall-col">
+            ${wallPanel('PANINI', menuData.panini, 'assets/premium_burger.png')}
+            ${wallPanel('VEGETARIANO', menuData.vegetariano.map(it => ({name: it.name, price: it.norm + ' / ' + it.maxi, description: it.description})))}
+            ${wallPanel('FRENCH TACOS', tacoData)}
+            ${wallPanel('PANE ARABO', menuData.paneArabo.map(it => ({name: it.name, price: it.price, description: it.description})))}
+            ${wallPanel('KEBAB IN VASCHETTA', [
+                {name: 'Small',  price: vp.small || '€3.50'},
+                {name: 'Normal', price: vp.norm  || '€5.00'},
+                {name: 'Maxi',   price: vp.maxi  || '€6.50'}
+            ])}
+        </div>`;
+
+        /* Col 3 */
+        const col3 = `<div class="wall-col">
+            ${wallPanel('MENÙ BAMBINI', menuData.menuBambini.map(it => ({name: it.name, price: it.menu, description: it.description})), 'assets/test_kebab.png')}
+            ${wallPanel('AGGIUNTE', menuData.aggiunte.map(it => ({name: it.name.split(',')[0], price: it.norm + ' / ' + it.maxi})))}
+            ${wallPanel('COUS COUS', menuData.cousCous)}
+            ${wallPanel('PIATTI', menuData.piatti.map(it => ({name: it.name, price: it.price, description: it.description})))}
+            ${wallPanel('CHOCO KEBAB', menuData.chocoKebab.map(it => ({name: it.name, price: it.price, description: it.description})))}
+        </div>`;
+
+        posterGrid.innerHTML = col1 + col2 + col3;
+    }
+
     /* ─── PAGE 1 content ──────────────────────────────────────── */
 
     // Column 1 — Kebab (2 sub-sections)
@@ -250,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const thumbGallery = `
         <div class="thumb-gallery">
             <div class="thumb" style="background-image:url('assets/img_fries.jpg')"></div>
-            <div class="thumb" style="background-image:url('assets/img_nuggets.jpg')"></div>
+            <div class="thumb" style="background-image:url('assets/img_nuggets.png')"></div>
             <div class="thumb" style="background-image:url('assets/img_wings.jpg')"></div>
         </div>`;
     document.getElementById('col-3-p1').innerHTML =
@@ -277,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name: it.name, price: it.menu, description: it.description
     }));
     const chocoItems = menuData.chocoKebab.map(it => ({
-        ...it, image: 'assets/choco.png'
+        ...it, image: it.image || 'assets/choco.png'
     }));
     document.getElementById('col-3-p2').innerHTML =
         section('MENÙ BAMBINI', dottedItems(bambiniItems)) +
@@ -302,14 +356,30 @@ function printMenu() {
     const theme = document.body.getAttribute('data-theme') || 'dark';
     const isKappa = fmt === 'kappa45x280';
 
-    /* Physical page dimensions in mm [width, height] */
+    /* Logical dimensions [width, height, unit] */
     const dims = {
-        'a3':           [420, 297],   // A3 landscape per page
-        'desk15x30':    [150, 300],   // Desk tent portrait
-        'wall70x80':    [700, 800],   // Wall poster portrait
-        'kappa45x280':  [2800, 450],  // Wide horizontal banner
+        'a3':           [420, 297, 'mm'],   // A3 landscape per page
+        'desk15x30':    [150, 300, 'mm'],   // Desk tent portrait
+        'wall70x80':    [700, 800, 'mm'],   // Wall poster portrait
+        'kappa45x280':  [2800, 450, 'px'],  // Wide horizontal banner
     };
-    const [pw, ph] = dims[fmt] || dims['a3'];
+    const [w, h, unit] = dims[fmt] || dims['a3'];
+
+    /* 
+       Chrome / Mac OS print dialogs often reject massive custom page sizes 
+       (like 2.8 meters or 700x800mm), defaulting to A4 and ruining the layout.
+       FIX: We scale down huge formats by 50% for the PDF generator, which 
+       yields a perfectly proportioned vector PDF that the print shop can scale back up.
+    */
+    let scale = 1.0;
+    if (fmt === 'wall70x80') scale = 0.5;   // 700x800mm -> 350x400mm
+    if (fmt === 'kappa45x280') scale = 0.5; // 2800x450px -> 1400x225px
+    
+    const pageW = (w * scale) + unit;
+    const pageH = (h * scale) + unit;
+    
+    const wrapperW = w + unit;
+    const wrapperH = h + unit;
 
     /* Resolve base URL so relative paths (assets/, css/) work in new window */
     const baseHref = window.location.href.replace(/[^/]*(\?.*)?$/, '');
@@ -321,25 +391,49 @@ function printMenu() {
         /* Kappa: render only the wall grid banner */
         const gridInner = document.getElementById('wall-grid-container').innerHTML;
         bodyContent = `
-        <div class="wall-theme" style="overflow:visible;width:${pw}mm;">
-          <main class="wall-grid" id="wall-grid-container"
-                style="min-width:unset;width:${pw}mm;height:${ph}mm;">
-            ${gridInner}
-          </main>
+        <div class="page-break-wrapper">
+          <div style="transform: scale(${scale}); transform-origin: top left; width:${wrapperW}; height:${wrapperH};">
+            <div class="wall-theme" style="width:${wrapperW}; overflow:visible;">
+              <main class="wall-grid" id="wall-grid-container"
+                    style="min-width:unset; width:${wrapperW}; height:${wrapperH};">
+                ${gridInner}
+              </main>
+            </div>
+          </div>
+        </div>`;
+    } else if (fmt === 'wall70x80') {
+        /* Poster: render only the poster grid */
+        const gridInner = document.getElementById('poster-grid-container').innerHTML;
+        bodyContent = `
+        <div class="page-break-wrapper">
+          <div style="transform: scale(${scale}); transform-origin: top left; width:${wrapperW}; height:${wrapperH};">
+            <div class="wall-theme" style="width:${wrapperW}; overflow:visible;">
+              <main class="poster-grid" id="poster-grid-container"
+                    style="min-width:unset; width:${wrapperW}; height:${wrapperH};">
+                ${gridInner}
+              </main>
+            </div>
+          </div>
         </div>`;
     } else {
         /* A3 / desk / wall: clone each menu page wrapper */
         bodyContent = Array.from(document.querySelectorAll('.menu-wrapper'))
-            .map(w => {
-                const cl = w.cloneNode(true);
+            .map(wNode => {
+                const cl = wNode.cloneNode(true);
                 cl.style.display   = 'block';
                 cl.style.margin    = '0';
                 cl.style.boxShadow = 'none';
-                cl.style.width     = pw + 'mm';
-                cl.style.height    = ph + 'mm';
+                cl.style.width     = wrapperW;
+                cl.style.height    = wrapperH;
                 cl.style.overflow  = 'hidden';
                 cl.setAttribute('data-format', fmt);
-                return cl.outerHTML;
+                
+                return `
+                <div class="page-break-wrapper">
+                  <div style="transform: scale(${scale}); transform-origin: top left; width:${wrapperW}; height:${wrapperH};">
+                    ${cl.outerHTML}
+                  </div>
+                </div>`;
             }).join('\n');
     }
 
@@ -360,7 +454,7 @@ function printMenu() {
   <link rel="stylesheet" href="css/style.css">
   <style>
     @page {
-      size: ${pw}mm ${ph}mm;
+      size: ${pageW} ${pageH};
       margin: 0;
     }
     html, body {
@@ -368,32 +462,26 @@ function printMenu() {
       background: none !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
+      width: ${pageW};
+      height: ${pageH};
     }
     .no-print { display: none !important; }
     .toolbar  { display: none !important; }
 
-    /* Each menu page fills exactly one printed sheet */
-    .page-wrapper {
-      margin: 0 !important;
-      box-shadow: none !important;
-      width: ${pw}mm !important;
-      height: ${ph}mm !important;
-      overflow: hidden !important;
+    .page-break-wrapper {
+      width: ${pageW};
+      height: ${pageH};
+      overflow: hidden;
       page-break-after: always;
       break-after: page;
     }
-    .page-wrapper:last-child {
+    .page-break-wrapper:last-child {
       page-break-after: avoid;
       break-after: avoid;
     }
 
-    /* Kappa banner */
+    /* Override Kappa overrides */
     .wall-theme { overflow: visible !important; }
-    .wall-grid  {
-      min-width: unset !important;
-      width: ${pw}mm !important;
-      height: ${ph}mm !important;
-    }
     .wall-col, .wall-col-double { flex: 1 !important; }
   </style>
 </head>
