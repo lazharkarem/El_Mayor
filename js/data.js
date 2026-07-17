@@ -60,9 +60,9 @@ const menuData = {
     baseIngredients: "Mozzarella, Cheddar, Patatine, Salsa a scelta",
     meatOptions: "Nuggets, Mergez, Kebab, Chicken, Cotoletta, Carne di Cavallo",
     sizes: [
-      { name: "M (1 tipo di carne)", singolo: "€7.00", menu: "€9.00" },
-      { name: "L (2 tipi di carne)", singolo: "€9.00",  menu: "€11.00" },
-      { name: "XL (3 tipi di carne)", singolo: "€12.00", menu: "€14.00" }
+      { name: "M (1 tipo di carne)", singolo: "€7.00", },
+      { name: "L (2 tipi di carne)", singolo: "€9.00",  },
+      { name: "XL (3 tipi di carne)", singolo: "€12.00",  }
     ]
   },
   menuBambini: [
